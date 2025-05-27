@@ -37,8 +37,7 @@ function RegisterForm(){
   */
   async function handleSubmit(evt) {
     evt.preventDefault();
-    try{const response = await axios.post(`${BASE_URL}/auth/register`,
-      user,
+    try{const response = await axios.post(`${BASE_URL}/auth/register`, {user},
       {
         headers: {
           "Content-Type": "application/json"
