@@ -35,17 +35,41 @@ function RegisterForm(){
   *
   * Calls login func prop and, if successful, redirect to /, but eventually the users homepage.
   */
-  async function handleSubmit(evt) {
-    evt.preventDefault();
-    try{
-      const response = await axios.post(`${BASE_URL}/auth/register`, user,
-      {
-        headers: {
-          "Content-Type": "application/json"
-        },
-        withCredentials: true
+  // async function handleSubmit(evt) {
+  //   evt.preventDefault();
+  //   try{
+  //     const response = await axios.post(`${BASE_URL}/auth/register`, user,
+  //     {
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       },
+  //       withCredentials: true
+  //     }
+  //   );
+
+  //   console.log(response.data);
+  //   alert(response.data.message);
+
+  //   if (response.data.message === "User registered successfully") {
+  //     navigate("/auth/login");
+  //   } else {
+  //     navigate("/auth/register");
+  //   }
+  //   }catch(err){
+  //   console.error("Registration failed:", err.response || err.message);
+  //   alert("Registration failed. Please try again.");
+  //   }
+  // }
+
+async function handleSubmit(evt) {
+  evt.preventDefault();
+
+  try {
+    const response = await axios.post(`${BASE_URL}/auth/register`, user, {
+      headers: {
+        "Content-Type": "application/json"
       }
-    );
+    });
 
     console.log(response.data);
     alert(response.data.message);
@@ -55,11 +79,12 @@ function RegisterForm(){
     } else {
       navigate("/auth/register");
     }
-    }catch(err){
+
+  } catch (err) {
     console.error("Registration failed:", err.response || err.message);
     alert("Registration failed. Please try again.");
-    }
   }
+}
 
   // Returns the Signup Form
   return (
