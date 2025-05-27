@@ -3,7 +3,7 @@ import axios from "axios"
 import {jwtDecode} from "jwt-decode";
 import { Link, useNavigate } from "react-router-dom";
 import "./UserHomepage.css"
-import BASE_URL from '../config';
+import BASE_URL from '../config.js';
 
 /**
  * Route for a users Homepage
