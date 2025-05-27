@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {jwtDecode} from "jwt-decode";
 import axios from "axios";
 import styles from "./createPost.module.css";
-import BASE_URL from './config';
+import BASE_URL from '../config';
 
 function CreatePost() {
   const navigate = useNavigate();

@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios"
 import {jwtDecode} from "jwt-decode";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import BASE_URL from './config';
-
+import BASE_URL from '../config';
 
 function CommentUrgentPost(){
         const navigate = useNavigate();

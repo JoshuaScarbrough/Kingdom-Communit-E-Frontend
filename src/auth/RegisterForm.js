@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import axios from "axios"
 import { Link, useNavigate } from "react-router-dom";
 import "./RegisterForm.css";
-import BASE_URL from './config';
-
+import BASE_URL from '../config';
 
 /** Signup form.
  *

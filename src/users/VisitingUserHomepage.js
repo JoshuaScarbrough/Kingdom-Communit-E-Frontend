@@ -3,7 +3,7 @@ import axios from "axios"
 import {jwtDecode} from "jwt-decode";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import styles from "./VisitingUserHomepage.module.css";
-import BASE_URL from './config';
+import BASE_URL from '../config';
 
 function VisitingUsersHomepage(){
     const navigate = useNavigate();

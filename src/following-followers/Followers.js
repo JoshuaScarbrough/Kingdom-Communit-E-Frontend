@@ -3,7 +3,7 @@ import axios from "axios"
 import {jwtDecode} from "jwt-decode";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Followers.module.css"; // using module CSS
-import BASE_URL from './config';
+import BASE_URL from '../config';
 
 function UsersFollowers() {
     const navigate = useNavigate();
