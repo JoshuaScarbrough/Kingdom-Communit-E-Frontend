@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios"
 import { Link, useNavigate } from "react-router-dom";
 import "./RegisterForm.css";
+import BASE_URL from './config';
+
 
 /** Signup form.
  *
@@ -37,7 +39,7 @@ function RegisterForm(){
   async function handleSubmit(evt) {
     evt.preventDefault();
     
-      const response = await axios.post("http://localhost:5000/auth/register", {
+      const response = await axios.post(`${BASE_URL}/auth/register`, {
         user
       });
       console.log(response.data)

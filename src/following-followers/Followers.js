@@ -3,6 +3,7 @@ import axios from "axios"
 import {jwtDecode} from "jwt-decode";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Followers.module.css"; // using module CSS
+import BASE_URL from './config';
 
 function UsersFollowers() {
     const navigate = useNavigate();
@@ -31,7 +32,7 @@ function UsersFollowers() {
         if (userId && token) { // check that both token and userId exist
           try {
             const response = await axios.post(
-              `http://localhost:5000/follow/${userId}/followers`,
+              `${BASE_URL}/follow/${userId}/followers`,
               { token }
             );
             console.log("API response:", response.data);

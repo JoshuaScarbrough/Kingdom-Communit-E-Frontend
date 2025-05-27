@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginForm.css";
+import BASE_URL from './config';
+
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -19,7 +21,7 @@ function LoginForm() {
   async function handleSubmit(evt) {
     evt.preventDefault();
 
-    let response = await axios.post("http://localhost:5000/auth/login", {
+    let response = await axios.post(`${BASE_URL}/auth/login`, {
       loginUser
     });
     response = response.data;

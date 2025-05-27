@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios"
 import {jwtDecode} from "jwt-decode";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import BASE_URL from './config';
 
 
 function CommentEvent(){
@@ -40,7 +41,7 @@ function CommentEvent(){
 
             try {
 
-                const response = await axios.post(`http://localhost:5000/events/${userId}/commentEvent`, 
+                const response = await axios.post(`${BASE_URL}/events/${userId}/commentEvent`, 
                     { token, eventId , ...commentEvent}, 
                     { headers: {"Content-Type": "application/json" } }
                 );

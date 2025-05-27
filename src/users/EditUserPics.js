@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios"
 import {jwtDecode} from "jwt-decode";
 import { Link, useNavigate } from "react-router-dom";
+import BASE_URL from './config';
 
 /** 
  * Route for a User to be able to edit their pics.
@@ -40,7 +41,7 @@ function EditUserPics(){
         async function getUser() {
         try {
             // Makes a call to the API that gets the user
-            const response = await axios.post("http://localhost:5000/users", {
+            const response = await axios.post(`${BASE_URL}/users`, {
             id: userId,
             });
 
@@ -85,7 +86,7 @@ function EditUserPics(){
         evt.preventDefault();
         console.log(updatedUser)
         
-          const response = await axios.patch(`http://localhost:5000/users/${userId}/updatePhotos`, {
+          const response = await axios.patch(`${BASE_URL}/users/${userId}/updatePhotos`, {
             token,
             updatedUser,
           });

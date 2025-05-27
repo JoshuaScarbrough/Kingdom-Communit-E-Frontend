@@ -3,7 +3,7 @@ import axios from "axios"
 import {jwtDecode} from "jwt-decode";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import styles from "./VisitingUserHomepage.module.css";
-
+import BASE_URL from './config';
 
 function VisitingUsersHomepage(){
     const navigate = useNavigate();
@@ -68,7 +68,7 @@ function VisitingUsersHomepage(){
                         // Async Function to get a user for their comments
                         const getCommentedUser = async () => {
                         // This gets the commenters username
-                        let commentUser = await axios.post(`http://localhost:5000/users`, {
+                        let commentUser = await axios.post(`${BASE_URL}/users`, {
                             id:commentUserId
                         })
             
@@ -103,7 +103,7 @@ function VisitingUsersHomepage(){
                             const userId = post.user_id
                             // Async function to get the user for their posts
                             const getPostUser = async () => {
-                            let postUser = await axios.post(`http://localhost:5000/users`, {
+                            let postUser = await axios.post(`${BASE_URL}/users`, {
                                 id: userId
                             })
                                 
@@ -122,7 +122,7 @@ function VisitingUsersHomepage(){
                                 const postId = post.id
 
                                 try {
-                                    let response = await axios.post(`http://localhost:5000/posts/${userId}/likePost`, {
+                                    let response = await axios.post(`${BASE_URL}/posts/${userId}/likePost`, {
                                     headers: { "Content-Type": "application/json" },
                                     token,
                                     postId 
@@ -141,7 +141,7 @@ function VisitingUsersHomepage(){
                                 event.preventDefault()
                                 const postId = post.id
 
-                                let response = await axios.post(`http://localhost:5000/posts/${userId}/specificPost`, {
+                                let response = await axios.post(`${BASE_URL}/posts/${userId}/specificPost`, {
                                     token,
                                     postId
                                 })
@@ -211,7 +211,7 @@ function VisitingUsersHomepage(){
                         // Async Function to get a user for their comments
                         const getCommentedUser = async () => {
                         // This gets the commenters username
-                        let commentUser = await axios.post(`http://localhost:5000/users`, {
+                        let commentUser = await axios.post(`${BASE_URL}/users`, {
                             id:commentUserId
                         })
             
@@ -247,7 +247,7 @@ function VisitingUsersHomepage(){
                             const userId = event.user_id
                             // Async function to get the user for their posts
                             const getEventUser = async () => {
-                            let eventUser = await axios.post(`http://localhost:5000/users`, {
+                            let eventUser = await axios.post(`${BASE_URL}/users`, {
                                 id: userId
                             })
                                 
@@ -265,7 +265,7 @@ function VisitingUsersHomepage(){
                                 const eventId = event.id
 
                                 try{
-                                    let response = await axios.post(`http://localhost:5000/feed/${userId}/event`, {
+                                    let response = await axios.post(`${BASE_URL}/feed/${userId}/event`, {
                                         token,
                                         eventId
                                     })
@@ -284,7 +284,7 @@ function VisitingUsersHomepage(){
                                 const eventId = event.id
 
                                 try {
-                                    let response = await axios.post(`http://localhost:5000/events/${userId}/likeEvent`, {
+                                    let response = await axios.post(`${BASE_URL}/events/${userId}/likeEvent`, {
                                     headers: { "Content-Type": "application/json" },
                                     token,
                                     eventId
@@ -303,7 +303,7 @@ function VisitingUsersHomepage(){
                                 evt.preventDefault()
                                 const eventId = event.id
 
-                                let response = await axios.post(`http://localhost:5000/events/${userId}/specificEvent`, {
+                                let response = await axios.post(`${BASE_URL}/events/${userId}/specificEvent`, {
                                     token,
                                     eventId
                                 })
@@ -375,7 +375,7 @@ function VisitingUsersHomepage(){
                         // Async Function to get a user for their comments
                         const getCommentedUser = async () => {
                         // This gets the commenters username
-                        let commentUser = await axios.post(`http://localhost:5000/users`, {
+                        let commentUser = await axios.post(`${BASE_URL}/users`, {
                             id:commentUserId
                         })
             
@@ -411,7 +411,7 @@ function VisitingUsersHomepage(){
                             const userId = UrgentPost.user_id
                             // Async function to get the user for their posts
                             const getPostUser = async () => {
-                            let postUser = await axios.post(`http://localhost:5000/users`, {
+                            let postUser = await axios.post(`${BASE_URL}/users`, {
                                 id: userId
                             })
                                 
@@ -430,7 +430,7 @@ function VisitingUsersHomepage(){
                                 const urgentPostId = UrgentPost.id
                 
                                 try{
-                                    let response = await axios.post(`http://localhost:5000/feed/${userId}/urgentPost`, {
+                                    let response = await axios.post(`${BASE_URL}/feed/${userId}/urgentPost`, {
                                         token,
                                         urgentPostId
                                 })
@@ -449,7 +449,7 @@ function VisitingUsersHomepage(){
                                 event.preventDefault()
                                 const urgentPostId = UrgentPost.id
 
-                                let response = await axios.post(`http://localhost:5000/urgentPosts/${userId}/specificUrgentPost`, {
+                                let response = await axios.post(`${BASE_URL}/urgentPosts/${userId}/specificUrgentPost`, {
                                     token,
                                     urgentPostId
                                 })
@@ -506,7 +506,7 @@ function VisitingUsersHomepage(){
 
         try{
 
-            let response = await axios.post(`http://localhost:5000/follow/${userId}/addUser`, {
+            let response = await axios.post(`${BASE_URL}/follow/${userId}/addUser`, {
                 token,
                 otherId
             })

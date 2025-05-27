@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {jwtDecode} from "jwt-decode";
 import axios from "axios";
 import styles from "./createPost.module.css";
+import BASE_URL from './config';
 
 function CreatePost() {
   const navigate = useNavigate();
@@ -62,7 +63,7 @@ function CreatePost() {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/posts/${userId}`,
+        `${BASE_URL}/posts/${userId}`,
         { token, ...createPost }, // Send token along with post data
         { headers: { "Content-Type": "application/json" } }
       );
@@ -79,7 +80,7 @@ function CreatePost() {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/events/${userId}`,
+        `${BASE_URL}/events/${userId}`,
         { token, ...createEvent },
         { headers: { "Content-Type": "application/json" } }
       );
@@ -96,7 +97,7 @@ function CreatePost() {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/urgentPosts/${userId}`,
+        `${BASE_URL}/urgentPosts/${userId}`,
         { token, ...createUrgentPost },
         { headers: { "Content-Type": "application/json" } }
       );

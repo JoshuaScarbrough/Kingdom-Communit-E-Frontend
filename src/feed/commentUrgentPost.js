@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios"
 import {jwtDecode} from "jwt-decode";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import BASE_URL from './config';
 
 
 function CommentUrgentPost(){
@@ -40,7 +41,7 @@ function CommentUrgentPost(){
 
             try {
 
-                const response = await axios.post(`http://localhost:5000/urgentPosts/${userId}/commentUrgentPost`, 
+                const response = await axios.post(`${BASE_URL}/urgentPosts/${userId}/commentUrgentPost`, 
                     { token, urgentPostId , ...commentUrgentPost},
                     { headers: {"Content-Type": "application/json" } }
                 );

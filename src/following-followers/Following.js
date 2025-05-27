@@ -3,6 +3,8 @@ import axios from "axios"
 import {jwtDecode} from "jwt-decode";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Following.module.css";
+import BASE_URL from './config';
+
 function UsersFollowing() {
   const navigate = useNavigate();
   
@@ -33,7 +35,7 @@ function UsersFollowing() {
       if (userId && token) {
         try {
           const response = await axios.post(
-            `http://localhost:5000/follow/${userId}/following`,
+            `${BASE_URL}/follow/${userId}/following`,
             { token }
           );
           setFollowingData(response.data);
@@ -58,7 +60,7 @@ function UsersFollowing() {
     console.log("User Id:", userId);
   
     try {
-      const response = await axios.delete(`http://localhost:5000/follow/${userId}/unfollow`, {
+      const response = await axios.delete(`${BASE_URL}/follow/${userId}/unfollow`, {
         headers: { "Content-Type": "application/json" }, // Ensure JSON format
         data: { username, userId }, // Correctly pass username inside "data"
       });

@@ -3,6 +3,7 @@ import axios from "axios"
 import {jwtDecode} from "jwt-decode";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./EditUser.module.css";  // Import the module CSS
+import BASE_URL from './config';
 
 /** 
  * Route for a User to be able to edit their profile.
@@ -46,7 +47,7 @@ function EditUser(){
             try {
                 // Makes a call to the API that gets the user
                 // This axios.post call needed proper mocking in tests
-                const response = await axios.post("http://localhost:5000/users", {
+                const response = await axios.post(`${BASE_URL}/users`, {
                     id: userId,
                 });
 
@@ -87,7 +88,7 @@ function EditUser(){
         evt.preventDefault();
         
         try {
-            const response = await axios.patch(`http://localhost:5000/users/${userId}/update`, {
+            const response = await axios.patch(`${BASE_URL}/users/${userId}/update`, {
                 token,
                 updatedUser,
             });

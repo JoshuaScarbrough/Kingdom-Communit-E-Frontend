@@ -3,6 +3,7 @@ import axios from "axios"
 import {jwtDecode} from "jwt-decode";
 import { Link, useNavigate } from "react-router-dom";
 import "./UsersFeed.module.css";  // Import the module CSS
+import BASE_URL from './config';
 
 function UserFeed(){
     const navigate = useNavigate();
@@ -42,7 +43,7 @@ function UserFeed(){
             const fetchFeed = async () => {
 
                 // Gets the user from the database
-                let user = await axios.post(`http://localhost:5000/users/${userId}`, {
+                let user = await axios.post(`${BASE_URL}/users/${userId}`, {
                     token
                 })
                 user = user.data.user
@@ -54,7 +55,7 @@ function UserFeed(){
 
 
                 // This gets all the user feed data from the database
-                let response = await axios.post(`http://localhost:5000/feed/${userId}`, {
+                let response = await axios.post(`${BASE_URL}/feed/${userId}`, {
                     token
                 });
                 response = response.data
@@ -100,7 +101,7 @@ function UserFeed(){
                     // Async Function to get a user for their comments
                     let getCommentedUser = async () => {
                         // This gets the commenters username
-                        let commentUser = await axios.post(`http://localhost:5000/users`, {
+                        let commentUser = await axios.post(`${BASE_URL}/users`, {
                             id:commentUserId
                         })
         
@@ -122,7 +123,7 @@ function UserFeed(){
                                 evt.preventDefault();
                                 const otherId = commentUserId
 
-                                let response = await axios.post(`http://localhost:5000/follow/${userId}/view/${otherId}`, {
+                                let response = await axios.post(`${BASE_URL}/follow/${userId}/view/${otherId}`, {
                                         token,
                                         otherId
                                 })
@@ -154,7 +155,7 @@ function UserFeed(){
                         const userId = post.user_id
                         // Async function to get the user for their posts
                         const getPostUser = async () => {
-                        let postUser = await axios.post(`http://localhost:5000/users`, {
+                        let postUser = await axios.post(`${BASE_URL}/users`, {
                             id: userId
                         })
                         
@@ -172,7 +173,7 @@ function UserFeed(){
                             const postId = post.id
 
                             try {
-                                let response = await axios.post(`http://localhost:5000/posts/${userId}/likePost`, {
+                                let response = await axios.post(`${BASE_URL}/posts/${userId}/likePost`, {
                                 headers: { "Content-Type": "application/json" },
                                 token,
                                 postId 
@@ -191,7 +192,7 @@ function UserFeed(){
                             event.preventDefault()
                             const postId = post.id
 
-                            let response = await axios.post(`http://localhost:5000/posts/${userId}/specificPost`, {
+                            let response = await axios.post(`${BASE_URL}/posts/${userId}/specificPost`, {
                                 token,
                                 postId
                             })
@@ -204,7 +205,7 @@ function UserFeed(){
                             evt.preventDefault();
                             const otherId = post.user_id
 
-                            let response = await axios.post(`http://localhost:5000/follow/${userId}/view/${otherId}`, {
+                            let response = await axios.post(`${BASE_URL}/follow/${userId}/view/${otherId}`, {
                                 token,
                                 otherId
                             })
@@ -329,7 +330,7 @@ function UserFeed(){
 
                         // Async function to get the user for their posts
                         const getEventUser = async () => {
-                        let eventUser = await axios.post(`http://localhost:5000/users`, {
+                        let eventUser = await axios.post(`${BASE_URL}/users`, {
                             id: userId
                         })
                         
@@ -347,7 +348,7 @@ function UserFeed(){
                             const eventId = event.id
 
                             try{
-                                let response = await axios.post(`http://localhost:5000/feed/${userId}/event`, {
+                                let response = await axios.post(`${BASE_URL}/feed/${userId}/event`, {
                                     token,
                                     eventId
                                 })
@@ -366,7 +367,7 @@ function UserFeed(){
                             const eventId = event.id
 
                             try {
-                                let response = await axios.post(`http://localhost:5000/events/${userId}/likeEvent`, {
+                                let response = await axios.post(`${BASE_URL}/events/${userId}/likeEvent`, {
                                 headers: { "Content-Type": "application/json" },
                                 token,
                                 eventId
@@ -385,7 +386,7 @@ function UserFeed(){
                             evt.preventDefault()
                             const eventId = event.id
 
-                            let response = await axios.post(`http://localhost:5000/events/${userId}/specificEvent`, {
+                            let response = await axios.post(`${BASE_URL}/events/${userId}/specificEvent`, {
                                 token,
                                 eventId
                             })
@@ -398,7 +399,7 @@ function UserFeed(){
                             evt.preventDefault();
                             const otherId = event.user_id
 
-                            let response = await axios.post(`http://localhost:5000/follow/${userId}/view/${otherId}`, {
+                            let response = await axios.post(`${BASE_URL}/follow/${userId}/view/${otherId}`, {
                                 token,
                                 otherId
                             })
@@ -471,7 +472,7 @@ function UserFeed(){
                     // Async Function to get a user for their comments
                     const getCommentedUser = async () => {
                     // This gets the commenters username
-                    let commentUser = await axios.post(`http://localhost:5000/users`, {
+                    let commentUser = await axios.post(`${BASE_URL}/users`, {
                         id:commentUserId
                     })
     
@@ -493,7 +494,7 @@ function UserFeed(){
                                 evt.preventDefault();
                                 const otherId = commentUserId
 
-                                let response = await axios.post(`http://localhost:5000/follow/${userId}/view/${otherId}`, {
+                                let response = await axios.post(`${BASE_URL}/follow/${userId}/view/${otherId}`, {
                                         token,
                                         otherId
                                 })
@@ -524,7 +525,7 @@ function UserFeed(){
 
                         // Async function to get the user for their posts
                         const getUrgentPostUser = async () => {
-                        let urgentPostUser = await axios.post(`http://localhost:5000/users`, {
+                        let urgentPostUser = await axios.post(`${BASE_URL}/users`, {
                             id: userId
                         })
                         
@@ -542,7 +543,7 @@ function UserFeed(){
                             const urgentPostId = UrgentPost.id
             
                             try{
-                                let response = await axios.post(`http://localhost:5000/feed/${userId}/urgentPost`, {
+                                let response = await axios.post(`${BASE_URL}/feed/${userId}/urgentPost`, {
                                     token,
                                     urgentPostId
                             })
@@ -561,7 +562,7 @@ function UserFeed(){
                             event.preventDefault()
                             const urgentPostId = UrgentPost.id
 
-                            let response = await axios.post(`http://localhost:5000/urgentPosts/${userId}/specificUrgentPost`, {
+                            let response = await axios.post(`${BASE_URL}/urgentPosts/${userId}/specificUrgentPost`, {
                                 token,
                                 urgentPostId
                             })
@@ -574,7 +575,7 @@ function UserFeed(){
                             evt.preventDefault();
                             const otherId = UrgentPost.user_id
 
-                            let response = await axios.post(`http://localhost:5000/follow/${userId}/view/${otherId}`, {
+                            let response = await axios.post(`${BASE_URL}/follow/${userId}/view/${otherId}`, {
                                 token,
                                 otherId
                             })
@@ -647,7 +648,7 @@ function UserFeed(){
                     // Async Function to get a user for their comments
                     const getCommentedUser = async () => {
                     // This gets the commenters username
-                    let commentUser = await axios.post(`http://localhost:5000/users`, {
+                    let commentUser = await axios.post(`${BASE_URL}/users`, {
                         id:commentUserId
                     })
     
@@ -668,7 +669,7 @@ function UserFeed(){
                                 evt.preventDefault();
                                 const otherId = commentUserId
 
-                                let response = await axios.post(`http://localhost:5000/follow/${userId}/view/${otherId}`, {
+                                let response = await axios.post(`${BASE_URL}/follow/${userId}/view/${otherId}`, {
                                         token,
                                         otherId
                                 })
@@ -699,7 +700,7 @@ function UserFeed(){
 
                         // Async function to get the user for their posts
                         const getPostUser = async () => {
-                            let postUser = await axios.post(`http://localhost:5000/users`, {
+                            let postUser = await axios.post(`${BASE_URL}/users`, {
                                 id: userId
                             })
                         
@@ -717,7 +718,7 @@ function UserFeed(){
                             const postId = post.id
 
                             try {
-                                let response = await axios.post(`http://localhost:5000/posts/${userId}/likePost`, {
+                                let response = await axios.post(`${BASE_URL}/posts/${userId}/likePost`, {
                                 headers: { "Content-Type": "application/json" },
                                 token,
                                 postId 
@@ -737,7 +738,7 @@ function UserFeed(){
                             event.preventDefault()
                             const postId = post.id
 
-                            let response = await axios.post(`http://localhost:5000/posts/${userId}/specificPost`, {
+                            let response = await axios.post(`${BASE_URL}/posts/${userId}/specificPost`, {
                                 token,
                                 postId
                             })
@@ -750,7 +751,7 @@ function UserFeed(){
                             evt.preventDefault();
                             const otherId = post.user_id
 
-                            let response = await axios.post(`http://localhost:5000/follow/${userId}/view/${otherId}`, {
+                            let response = await axios.post(`${BASE_URL}/follow/${userId}/view/${otherId}`, {
                                 token,
                                 otherId
                             })
@@ -821,7 +822,7 @@ function UserFeed(){
                     // Async Function to get a user for their comments
                     const getCommentedUser = async () => {
                     // This gets the commenters username
-                    let commentUser = await axios.post(`http://localhost:5000/users`, {
+                    let commentUser = await axios.post(`${BASE_URL}/users`, {
                         id:commentUserId
                     })
     
@@ -843,7 +844,7 @@ function UserFeed(){
                                 evt.preventDefault();
                                 const otherId = commentUserId
 
-                                let response = await axios.post(`http://localhost:5000/follow/${userId}/view/${otherId}`, {
+                                let response = await axios.post(`${BASE_URL}/follow/${userId}/view/${otherId}`, {
                                         token,
                                         otherId
                                 })
@@ -874,7 +875,7 @@ function UserFeed(){
 
                         // Async function to get the user for their posts
                         const getEventUser = async () => {
-                        let eventUser = await axios.post(`http://localhost:5000/users`, {
+                        let eventUser = await axios.post(`${BASE_URL}/users`, {
                             id: userId
                         })
                         
@@ -892,7 +893,7 @@ function UserFeed(){
                             const eventId = event.id
 
                             try{
-                                let response = await axios.post(`http://localhost:5000/feed/${userId}/event`, {
+                                let response = await axios.post(`${BASE_URL}/feed/${userId}/event`, {
                                     token,
                                     eventId
                                 })
@@ -911,7 +912,7 @@ function UserFeed(){
                             const eventId = event.id
 
                             try {
-                                let response = await axios.post(`http://localhost:5000/events/${userId}/likeEvent`, {
+                                let response = await axios.post(`${BASE_URL}/events/${userId}/likeEvent`, {
                                 headers: { "Content-Type": "application/json" },
                                 token,
                                 eventId
@@ -930,7 +931,7 @@ function UserFeed(){
                             evt.preventDefault()
                             const eventId = event.id
     
-                            let response = await axios.post(`http://localhost:5000/events/${userId}/specificEvent`, {
+                            let response = await axios.post(`${BASE_URL}/events/${userId}/specificEvent`, {
                                 token,
                                 eventId
                             })
@@ -943,7 +944,7 @@ function UserFeed(){
                             evt.preventDefault();
                             const otherId = event.user_id
 
-                            let response = await axios.post(`http://localhost:5000/follow/${userId}/view/${otherId}`, {
+                            let response = await axios.post(`${BASE_URL}/follow/${userId}/view/${otherId}`, {
                                 token,
                                 otherId
                             })
@@ -1015,7 +1016,7 @@ function UserFeed(){
                     // Async Function to get a user for their comments
                     const getCommentedUser = async () => {
                     // This gets the commenters username
-                    let commentUser = await axios.post(`http://localhost:5000/users`, {
+                    let commentUser = await axios.post(`${BASE_URL}/users`, {
                         id:commentUserId
                     })
     
@@ -1037,7 +1038,7 @@ function UserFeed(){
                                 evt.preventDefault();
                                 const otherId = commentUserId
 
-                                let response = await axios.post(`http://localhost:5000/follow/${userId}/view/${otherId}`, {
+                                let response = await axios.post(`${BASE_URL}/follow/${userId}/view/${otherId}`, {
                                         token,
                                         otherId
                                 })
@@ -1068,7 +1069,7 @@ function UserFeed(){
 
                         // Async function to get the user for their posts
                         const getUrgentPostUser = async () => {
-                        let urgentPostUser = await axios.post(`http://localhost:5000/users`, {
+                        let urgentPostUser = await axios.post(`${BASE_URL}/users`, {
                             id: userId
                         })
                         
@@ -1086,7 +1087,7 @@ function UserFeed(){
                             const urgentPostId = UrgentPost.id
             
                             try{
-                                let response = await axios.post(`http://localhost:5000/feed/${userId}/urgentPost`, {
+                                let response = await axios.post(`${BASE_URL}/feed/${userId}/urgentPost`, {
                                     token,
                                     urgentPostId
                             })
@@ -1105,7 +1106,7 @@ function UserFeed(){
                             event.preventDefault()
                             const urgentPostId = UrgentPost.id
 
-                            let response = await axios.post(`http://localhost:5000/urgentPosts/${userId}/specificUrgentPost`, {
+                            let response = await axios.post(`${BASE_URL}/urgentPosts/${userId}/specificUrgentPost`, {
                                 token,
                                 urgentPostId
                             })
@@ -1118,7 +1119,7 @@ function UserFeed(){
                             evt.preventDefault();
                             const otherId = UrgentPost.user_id
 
-                            let response = await axios.post(`http://localhost:5000/follow/${userId}/view/${otherId}`, {
+                            let response = await axios.post(`${BASE_URL}/follow/${userId}/view/${otherId}`, {
                                 token,
                                 otherId
                             })
