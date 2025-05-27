@@ -37,19 +37,43 @@ function RegisterForm(){
   */
   async function handleSubmit(evt) {
     evt.preventDefault();
-
-      const response = await axios.post(`${BASE_URL}/auth/register`, {
-        user
-      });
-      console.log(response.data)
-
-      alert(response.data.message)
-
-      if(response.data.message == 'User registered successfully'){
-        navigate("/auth/login")
-      }else{
-        navigate("/auth/register");
+    try{
+  const response = await axios.post(
+      `${BASE_URL}/auth/register`,
+      { user },
+      {
+        headers: {
+          "Content-Type": "application/json"
+        },
+        withCredentials: true
       }
+    );
+
+    console.log(response.data);
+    alert(response.data.message);
+
+    if (response.data.message === "User registered successfully") {
+      navigate("/auth/login");
+    } else {
+      navigate("/auth/register");
+    }
+    }catch(err){
+console.error("Registration failed:", err.response || err.message);
+    alert("Registration failed. Please try again.");
+    }
+    
+      // const response = await axios.post(`${BASE_URL}/auth/register`, {
+      //   user
+      // });
+      // console.log(response.data)
+
+      // alert(response.data.message)
+
+      // if(response.data.message == 'User registered successfully'){
+      //   navigate("/auth/login")
+      // }else{
+      //   navigate("/auth/register");
+      // }
   }
 
   // Returns the Signup Form
